@@ -40,3 +40,17 @@ class CategoryService:
     def get_all_categories(self) -> List[Category]:
         """Return a dictionary of categories"""
         return self._categories
+
+    def get_category(self, name: str) -> Category:
+        """Return a category by a category name"""
+        found = None
+        other_category = None
+        for category in self._categories:
+            if category.name == "other":
+                other_category = category
+            for alias in category.aliases:
+                if name in alias:
+                    found = category
+        if not found:
+            found = other_category
+        return found

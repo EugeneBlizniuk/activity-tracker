@@ -9,6 +9,7 @@ create table activity
 (
     id            integer primary key,
     name          varchar(255),
+    amount        int,
     created       datetime,
     category_name integer,
     FOREIGN KEY (category_name) REFERENCES category (name)

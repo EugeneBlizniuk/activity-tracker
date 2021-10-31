@@ -18,8 +18,21 @@ dp = Dispatcher(bot)
 async def send_welcome(message: types.Message):
     """This handler will be called when user sends `/start` or `/help` command"""
     await message.answer(
-        "Hello there!\nI'm Activity Tracker!\n\n"
-        "I'm here to collect your activity and calculate its statistics\n\n"
+        "Hello there!\n"
+        "I'm here to collect your activity statistics and drink beer.\n"
+        "As you can see my bottle is empty already\n\n"
+        "Enter /help to get a list of commands"
+    )
+
+
+@dp.message_handler(commands=["help"])
+async def get_help(message: types.Message):
+    """Return a list of existing commands"""
+    await message.answer(
+        "/start - light me up\n"
+        "/help - list of existing commands\n"
+        "/categories - list of existing categories\n\n"
+        "new commands are coming..."
     )
 
 
@@ -30,6 +43,12 @@ async def categories_list(message: types.Message):
     answer = "List of existing categories:\n\n* " + \
              ("\n* ".join([c.name + ' (' + ", ".join(c.aliases) + ')' for c in categories]))
     await message.answer(answer)
+
+
+@dp.message_handler()
+async def add_activity(message: types.Message):
+    """Add new activity"""
+
 
 
 if __name__ == "__main__":
