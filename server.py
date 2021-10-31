@@ -3,6 +3,8 @@ import logging
 from aiogram import Bot, Dispatcher, executor, types
 
 import category
+import activity
+import exceptions
 
 API_TOKEN = "2071085913:AAHU8wD4dywZD-1IlgLeGGjZOVKbWVc3kFA"
 
@@ -48,7 +50,13 @@ async def categories_list(message: types.Message):
 @dp.message_handler()
 async def add_activity(message: types.Message):
     """Add new activity"""
-
+    try:
+        added_activity = activity.add_activity(message.text)
+    except exceptions.NotCorrectMessage as e:
+        await message.answer(str(e))
+        return
+    answer = f"{added_activity.name} has been added\n{added_activity.amount} minutes have been spent"
+    await message.answer(answer)
 
 
 if __name__ == "__main__":

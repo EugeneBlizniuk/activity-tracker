@@ -12,6 +12,7 @@ create table activity
     amount        int,
     created       datetime,
     category_name integer,
+    raw_text       text,
     FOREIGN KEY (category_name) REFERENCES category (name)
 );
 
