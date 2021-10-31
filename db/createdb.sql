@@ -1,8 +1,8 @@
 create table category
 (
-    name            varchar(255) primary key,
-    is_base_expense boolean,
-    aliases         text
+    name             varchar(255) primary key,
+    is_base_activity boolean,
+    aliases          text
 );
 
 create table activity
@@ -14,11 +14,9 @@ create table activity
     FOREIGN KEY (category_name) REFERENCES category (name)
 );
 
-insert into category (name, is_base_expense, aliases)
+insert into category (name, is_base_activity, aliases)
 values ("sport", true, "gym, swimming pool, spa, sauna, тренжерный зал, бассейн, баня, сауна"),
-       ("food", true, "food, grocery, еда, продукты, вода"),
-       ("transport", false, "taxi, subway, bus, trolleybus, такси, метро, автобус, троллейбус"),
-       ("apartment", false,
-        "apartment, house, home, utilities, internet, квартира, дом, коммунальные платежи, интернет"),
-       ("subscription", false, "phone, spotify"),
+       ("business", true, "investment, cryptocurrency, инвестирование, криптовалюта"),
+       ("improvment", true, "java, angular, english"),
+       ("work", false, "new-feature, bug-fix, meet-up, новый функционал, исправление бага, встреча"),
        ("other", true, "");

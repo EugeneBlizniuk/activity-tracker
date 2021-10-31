@@ -1,7 +1,6 @@
 import os
-from typing import Dict, List, Tuple
-
 import sqlite3
+from typing import Dict, List
 
 connection = sqlite3.connect(os.path.join("db", "db/activity-tracker-db.sqlite"))
 cursor = connection.cursor()
@@ -19,7 +18,7 @@ def insert(table: str, column_values: Dict):
     connection.commit()
 
 
-def get_all(table: str, columns: List[str]) -> List[Tuple]:
+def get_all(table: str, columns: List[str]) -> List[Dict]:
     joined_columns = ", ".join(columns)
     cursor.execute(f"select {joined_columns} from {table}")
     rows = cursor.fetchall()
