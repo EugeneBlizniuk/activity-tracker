@@ -15,8 +15,8 @@ create table activity
 );
 
 insert into category (name, is_base_activity, aliases)
-values ("sport", true, "gym, swimming pool, spa, sauna, тренжерный зал, бассейн, баня, сауна"),
-       ("business", true, "investment, cryptocurrency, инвестирование, криптовалюта"),
+values ("sport", true, "gym, swimming pool, spa, sauna"),
+       ("business", true, "investment, cryptocurrency"),
        ("improvment", true, "java, angular, english"),
-       ("work", false, "new-feature, bug-fix, meet-up, новый функционал, исправление бага, встреча"),
+       ("work", false, "new-feature, bug-fix, meet-up"),
        ("other", true, "");

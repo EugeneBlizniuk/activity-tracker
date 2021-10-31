@@ -2,7 +2,7 @@ import os
 import sqlite3
 from typing import Dict, List
 
-connection = sqlite3.connect(os.path.join("db", "db/activity-tracker-db.sqlite"))
+connection = sqlite3.connect(os.path.join("db", "activity-tracker-db.sqlite"))
 cursor = connection.cursor()
 
 
