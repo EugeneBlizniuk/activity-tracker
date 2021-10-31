@@ -1,0 +1,12 @@
+FROM python:3.9
+
+WORKDIR /Users/eugenbliznyuk/Documents/pet/activity-tracker/workdir
+
+ENV TELEGRAM_API_TOKEN=""
+ENV TELEGRAM_ACCESS_ID=""
+ENV TELEGRAM_PROXY_URL=""
+ENV TELEGRAM_PROXY_LOGIN=""
+ENV TELEGRAM_PROXY_PASSWORD=""
+
+ENV TZ=UTC
+
