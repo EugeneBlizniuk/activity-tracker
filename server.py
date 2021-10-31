@@ -43,8 +43,26 @@ async def categories_list(message: types.Message):
     """Return a list of existing categories"""
     categories = category.CategoryService().get_all_categories()
     answer = "List of existing categories:\n\n* " + \
-             ("\n* ".join([c.name + ' (' + ", ".join(c.aliases) + ')' for c in categories]))
+             ("\n* ".join([c.name + " (" + ", ".join(c.aliases) + ")" for c in categories])) + \
+             "\n\n/edit_categories - to the list of categories"
     await message.answer(answer)
+
+
+@dp.message_handler(commands=["edit_categories"])
+async def categories_list(message: types.Message):
+    """Return a list of existing categories"""
+    categories = category.CategoryService().get_all_categories()
+    answer = "List of existing categories:\n\n* " + \
+             ("\n* ".join(["/del_" + str(c.id) + " " + c.name + " (" + ", ".join(c.aliases) + ")" for c in categories]))
+    await message.answer(answer)
+
+
+@dp.message_handler(lambda message: str(message.text).startswith("/del"))
+async def delete_category(message: types.Message):
+    """Delete a particular category by name"""
+    row_id = int(message.text[5:])
+    category.delete_category(row_id)
+    await message.answer("Deleted")
 
 
 @dp.message_handler()

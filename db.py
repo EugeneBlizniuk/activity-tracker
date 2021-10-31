@@ -7,6 +7,7 @@ cursor = connection.cursor()
 
 
 def insert(table: str, column_values: Dict):
+    """Insert incoming value"""
     columns = ", ".join(column_values.keys())
     values = [tuple(column_values.values())]
     placeholders = ", ".join("?" * len(column_values.keys()))
@@ -19,6 +20,7 @@ def insert(table: str, column_values: Dict):
 
 
 def get_all(table: str, columns: List[str]) -> List[Dict]:
+    """Return all rows"""
     joined_columns = ", ".join(columns)
     cursor.execute(f"select {joined_columns} from {table}")
     rows = cursor.fetchall()
@@ -29,6 +31,12 @@ def get_all(table: str, columns: List[str]) -> List[Dict]:
             dict_row[column] = row[index]
         result.append(dict_row)
     return result
+
+
+def delete(table: str, row_id: int):
+    """Delete row by its id"""
+    cursor.execute(f"delete from {table} where id={row_id}")
+    connection.commit()
 
 
 def _init_db():

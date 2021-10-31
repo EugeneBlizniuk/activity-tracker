@@ -4,8 +4,14 @@ from typing import List, NamedTuple, Dict
 import db
 
 
+def delete_category(row_id: int) -> None:
+    """Delete category by its id"""
+    db.delete("category", row_id)
+
+
 class Category(NamedTuple):
     """Category structure"""
+    id: int
     name: str
     is_base_activity: bool
     aliases: List[str]
@@ -18,7 +24,7 @@ class CategoryService:
     def _load_categories(self) -> List[Category]:
         """Load all existing categories"""
         categories = db.get_all(
-            "category", "name is_base_activity aliases".split()
+            "category", "id name is_base_activity aliases".split()
         )
         categories = self._fill_aliases(categories)
         return categories
@@ -31,6 +37,7 @@ class CategoryService:
             aliases = list(filter(None, map(str.strip, aliases)))
             aliases.append(category["name"])
             filled_up_categories.append(Category(
+                id=category["id"],
                 name=category["name"],
                 is_base_activity=category["is_base_activity"],
                 aliases=aliases
