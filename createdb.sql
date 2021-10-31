@@ -7,14 +7,14 @@ create table category
 
 create table activity
 (
-    id                integer primary key,
-    name              varchar(255),
-    created           datetime,
-    category_codename integer,
-    FOREIGN KEY (category_codename) REFERENCES category (name)
+    id            integer primary key,
+    name          varchar(255),
+    created       datetime,
+    category_name integer,
+    FOREIGN KEY (category_name) REFERENCES category (name)
 );
 
-insert into category (codename, name, is_base_expense, aliases)
+insert into category (name, is_base_expense, aliases)
 values ("sport", true, "gym, swimming pool, spa, sauna, тренжерный зал, бассейн, баня, сауна"),
        ("food", true, "food, grocery, еда, продукты, вода"),
        ("transport", false, "taxi, subway, bus, trolleybus, такси, метро, автобус, троллейбус"),
